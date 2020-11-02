@@ -1,49 +1,75 @@
-import React from "react";
+import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { Button } from "react-bootstrap";
-import axios from "axios";
+import { Col, Container, Row } from "react-bootstrap";
+import SearchBar from "./components/SearchBar";
+import VideoDetail from "./components/VideoDetail";
+import VideoList from "./components/VideoList";
+import youtube from "./api/youtube";
 
-function App() {
-  /** Fetch */
-  fetch("https://api.github.com/users/hacktivist123")
-    .then((response) => response.json())
-    .then((data) => console.log(data));
+class App extends Component {
+  state = {
+    videos: [],
+    selectedVideo: null,
+  };
 
-  /** Axios */
-  axios
-    .get("https://api.github.com/users/hacktivist123", {
-      responseType: "json",
-    })
-    .then(function (res) {
-      if (res.status === 200) {
-        console.log(res.data);
-      }
-      console.log(res);
-    })
-    .catch(function (err) {
-      console.log(err);
+  handleSubmit = async (termFromSearchBar) => {
+    const response = await youtube.get("/search", {
+      params: {
+        q: termFromSearchBar,
+      },
+    });
+    this.setState({
+      videos: response.data.items,
     });
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <Button>Button</Button>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    console.log(this.state.videos);
+  };
+
+  handleVideoSelect = (video) => {
+    this.setState({ selectecVideo: video });
+  };
+
+  componentDidMount() {
+    this.handleSubmit("react.js");
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Container>
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <code>REACTUBE</code>
+            <img src={logo} className="App-logo" alt="logo" />
+          </header>
+          <section className="p-3">
+            <Row className="border rounded mb-3">
+              <Col xs={12}>
+                <SearchBar handleFormSubmit={this.handleSubmit} />
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={8} className="">
+                <VideoDetail video={this.state.selectedVideo} />
+              </Col>
+              <Col xs={4}>
+                <Row>
+                  <Col>
+                    <h3>VideoList</h3>{" "}
+                  </Col>
+                </Row>
+                <VideoList
+                  videos={this.state.videos}
+                  handleVideoSelect={this.handleVideoSelect}
+                />
+              </Col>
+            </Row>
+          </section>
+        </Container>
+      </div>
+    );
+  }
 }
 
 export default App;
