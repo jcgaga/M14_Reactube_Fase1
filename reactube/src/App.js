@@ -30,10 +30,6 @@ class App extends Component {
     this.setState({ selectecVideo: video });
   };
 
-  componentDidMount() {
-    this.handleSubmit("react.js");
-  }
-
   render() {
     return (
       <div className="App">
