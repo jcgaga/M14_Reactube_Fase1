@@ -12,9 +12,6 @@ const VideoList = ({ videos, handleVideoSelect }) => {
           video={video}
           handleVideoSelect={handleVideoSelect}
         />
-        <h6>Title: {video.snippet.title}</h6>
-        <h6>VideoId: {video.id.videoId}</h6>
-        <h6>URL: {video.snippet.thumbnails.default.url}</h6>
         <hr size="2px" color="silver"/>
       </Col>
     );

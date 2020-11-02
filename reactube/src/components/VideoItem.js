@@ -1,12 +1,20 @@
 import React from "react";
-import { Col } from "react-bootstrap";
+import { Row, Col, Image } from "react-bootstrap";
 
-function VideoItem() {
+const VideoItem = ({ video, handleVideoSelect }) => {
   return (
-    <Col xs={12}>
-     <h2>VideoItem</h2> 
-    </Col>
+    <Row
+      onClick={() => handleVideoSelect(video)}
+      className="d-flex flex-wrap align-items-center"
+    >
+      <Col>
+        <Image src={video.snippet.thumbnails.medium.url}></Image>
+      </Col>
+      <Col>
+        <h5>{video.snippet.title}</h5>
+      </Col>
+    </Row>
   );
-}
+};
 
 export default VideoItem;
