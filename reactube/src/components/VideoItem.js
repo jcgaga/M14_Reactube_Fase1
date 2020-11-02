@@ -4,7 +4,7 @@ import { Col } from "react-bootstrap";
 function VideoItem() {
   return (
     <Col xs={12}>
-      VideoItem
+     <h2>VideoItem</h2> 
     </Col>
   );
 }

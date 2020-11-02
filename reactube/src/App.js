@@ -50,11 +50,6 @@ class App extends Component {
                 <VideoDetail video={this.state.selectedVideo} />
               </Col>
               <Col xs={4}>
-                <Row>
-                  <Col>
-                    <h3>VideoList</h3>{" "}
-                  </Col>
-                </Row>
                 <VideoList
                   videos={this.state.videos}
                   handleVideoSelect={this.handleVideoSelect}
