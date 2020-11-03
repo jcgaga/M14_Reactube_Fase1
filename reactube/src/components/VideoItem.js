@@ -1,7 +1,7 @@
 import React from "react";
 import { Row, Col, Image } from "react-bootstrap";
 
-const VideoItem = ({video, handleVideoSelect }) => {
+const VideoItem = ({ video, handleVideoSelect }) => {
   return (
     <Row
       onClick={() => handleVideoSelect(video)}

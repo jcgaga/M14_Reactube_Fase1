@@ -12,7 +12,7 @@ class App extends Component {
     videos: data,
     selectedVideo: null,
   };
-  
+
   handleSubmit = async (termFromSearchBar) => {
     const response = await youtube.get("/search", {
       params: {
@@ -29,8 +29,6 @@ class App extends Component {
   handleVideoSelect = (video) => {
     this.setState({ selectedVideo: video });
   };
-
-  
 
   render() {
     return (
