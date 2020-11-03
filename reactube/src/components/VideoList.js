@@ -4,11 +4,10 @@ import VideoItem from "./VideoItem";
 
 const VideoList = ({ videos, handleVideoSelect }) => {
   const renderedVideos = videos.map((video) => {
-    console.log(video);
     return (
-      <Col xs={12}>
+      <Col xs={12} key={video.id.videoId}>
         <VideoItem
-          key={video.id.videoId}
+          
           video={video}
           handleVideoSelect={handleVideoSelect}
         />
